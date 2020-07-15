@@ -1,15 +1,62 @@
-import React, { useContext, useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import sun from "../../Images/sun.svg";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
 import { UserContext } from "../../context";
 import { backendURL } from "../../config";
 import { toast } from "react-toastify";
 
+const PasswordWrapper = styled.div`
+  height: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  button {
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  a {
+    font-size: 0.8rem;
+    color: #7e57c2;
+  }
+  .switch {
+    width: 100%;
+    font-size: 0.6rem;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    width: 70%;
+    padding: 10% 30px;
+    border-radius: 5px;
+    background-color: #7e57c2;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .question *,
+  .question *::placeholder {
+    color: white;
+  }
+`;
+
 const Password = () => {
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const { currentUserName, currentUserEmail } = useContext(UserContext);
+  const input = useRef();
+  const {
+    currentUserName,
+    currentUserEmail,
+    setCurrentUserId,
+    setCurrentUserEmail,
+    setCurrentUserName,
+  } = useContext(UserContext);
   const history = useHistory();
+
+  useEffect(() => {
+    input.current.focus();
+  }, []);
 
   const handleSubmit = async () => {
     const body = {
@@ -30,7 +77,10 @@ const Password = () => {
       toast.error(error);
       return;
     }
-    const { access_token } = await res.json();
+    const { access_token, user } = await res.json();
+    setCurrentUserId(user.id);
+    setCurrentUserEmail(user.email);
+    setCurrentUserName(user.name);
     localStorage.removeItem("aura_register");
     localStorage.setItem("aura_access_token", access_token);
     history.push("/");
@@ -47,41 +97,45 @@ const Password = () => {
       setConfirmPassword(e.target.value);
     }
   };
+  const handleBack = (e) => {
+    setCurrentUserEmail("");
+    localStorage.setItem(
+      "aura_register",
+      JSON.stringify({ name: currentUserName, email: "" })
+    );
+    history.goBack();
+  };
 
   return (
-    <>
-      <div className="logoWrapper">
-        <img alt="sun" src={sun} />
-        <svg viewBox="0 0 240 80">
-          å
-          <text x="77" y="50">
-            Aura
-          </text>
-        </svg>
-        <h2>Welcome to Aura,</h2>
-        <h2>Your Daily Mood Journal.</h2>
-      </div>
+    <PasswordWrapper>
       <div>
-        <h3>Please set a password?</h3>
+        <div>{`Got it!`}</div>
+        <div>{currentUserEmail}</div>
+      </div>
+
+      <div className="question">
+        <div>Please set a password</div>
         <input
-          type="text"
+          ref={input}
+          type="password"
           name="password"
           id="password"
           placeholder="Password"
           onKeyUp={handleUpdate}
         ></input>
         <input
-          type="text"
+          type="password"
           name="confirmPassword"
           id="confirmPassword"
           placeholder="ConfirmPassword"
           onKeyUp={handleUpdate}
         ></input>
       </div>
-      <p>I already have an account</p>
-      <Link to={"/auth/register"}>Login</Link>
-      <button onClick={handleSubmit}>Continue</button>
-    </>
+      <div className="buttons">
+        <button onClick={handleSubmit}>Continue</button>
+        <button onClick={handleBack}>Go Back</button>
+      </div>
+    </PasswordWrapper>
   );
 };
 

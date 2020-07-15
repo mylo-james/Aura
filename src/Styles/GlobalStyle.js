@@ -1,19 +1,27 @@
 import { createGlobalStyle } from "styled-components";
+import Raleway from "../Styles/fonts/Raleway-Regular.ttf";
+import OpenSans from "../Styles/fonts/OpenSansCondensed-Light.ttf";
 
 const GlobalStyle = createGlobalStyle`
+@font-face{
+    font-family: raleway;
+    src: url(${Raleway}) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: opensans;
+    src: url(${OpenSans}) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
 * {
     box-sizing: border-box;
+    
   }
 
-  button {
-      height: 40px;
-      outline: none;
-      border: none;
-      background-color: #Fce181;
-      font-weight: 700;
-      color: #262626;
-      border-radius: 5px;
-  }
+
 
   html, body, div, span, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,12 +39,14 @@ const GlobalStyle = createGlobalStyle`
       padding:0;
       border:0;
       outline:0;
-      color: #202020;
-      font-size: 16px;
+      color: #455A64;
+      font-size: 20px;
       text-align: center;
       vertical-align:baseline;
       background: transparent;
-      font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+      font-family: opensans;
+      letter-spacing: 2px;
+      font-weight: 600;
       -webkit-font-smoothing: antialiased;
       line-height: inherit;
     }
@@ -55,6 +65,52 @@ const GlobalStyle = createGlobalStyle`
         list-style:none;
     }
 
+      button {
+        height: 40px;
+        outline: none;
+        border: none;
+        background-color: #7e57c2;
+        font-weight: 700;
+        color: white;
+        border-radius: 5px;
+        font-family: raleway;
+        box-shadow: 4px 6px 2px #dfdfdf ;
+        border: #dfdfdf solid 1px;
+    }
+
+    input, input::placeholder {
+        font-family: raleway;
+        color: white;
+    }
+
+    input {
+        padding-left: 5px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .user{
+        font-family: raleway;
+    }
+
+    .card {
+        border-radius: 5px;
+        background-color: #7e57c2;
+        padding: 10% 30px;
+        box-shadow: 4px 6px 2px #dfdfdf ;
+        border: #dfdfdf solid 1px;
+    }
+    .card * {
+        color: white;
+    }
+    .Toastify__close-button {
+        display: none;
+    }
+    body {
+        background-color: #e1e2e1;
+    }
     
 
 

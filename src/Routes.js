@@ -15,7 +15,6 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log("protectedRoute");
     if (!currentUserId && !localStorage.getItem("aura_access_token")) {
       history.push("/auth");
     }
@@ -24,7 +23,7 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
       if (!currentUserId) {
         localStorage.removeItem("aura_register");
         const body = {
-          access_token: localStorage.getItem("aura_access_token"),
+          access_token: JSON.parse(localStorage.getItem("aura_access_token")),
         };
         try {
           const res = await fetch(`${backendURL}/session/check`, {
@@ -57,7 +56,7 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
     setCurrentUserName,
   ]);
 
-  if (!currentUserId || currentUserName || currentUserEmail) return null;
+  if (!currentUserId || !currentUserName || !currentUserEmail) return null;
 
   return (
     <>

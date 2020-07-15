@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Switch, BrowserRouter } from "react-router-dom";
 import { ProtectedRoute, AuthRoute } from "./Routes";
@@ -24,12 +24,18 @@ function App() {
 
   return (
     <UserContext.Provider value={userContextValue}>
-      <ToastContainer autoClose={5000} />
+      <ToastContainer
+        transition={Zoom}
+        autoClose={2000}
+        draggable={false}
+        limit={1}
+        closeOnClick={false}
+      />
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
           <AuthRoute path="/auth" component={Auth} />
-          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </UserContext.Provider>

@@ -1,6 +1,6 @@
 import { keyframes } from "styled-components";
 
-export const fadeIn = keyframes`
+export const fadeInFromUp = keyframes`
     from {
         opacity: 0;
         transform: translateY(-10px);
@@ -12,70 +12,37 @@ export const fadeIn = keyframes`
     }
 `;
 
-export const yTranslate = keyframes`
-    0% {
-       transform: translateY(15vh);
+export const fadeOutToDown = keyframes`
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+
     }
-    100% {
-        transform: translateY(10.2vh);
+    to {
+        opacity: 0;
+        transform: translateY(10px);
     }
 `;
 
-export const yTranslateRev = keyframes`
-    0% {
-       transform: translateY(15vh);
-    }
-    100% {
-        transform: translateY(20vh);
-    }
-`;
-export const yTranslate2 = keyframes`
-    0% {
-       transform: translateY(37.5vh);
-    }
-    100% {
-        transform: translateY(25.5vh);
-    }
-`;
+export const slideInFromRight = keyframes`
+    from {
+       
+        transform: translateX(25%) rotateY(270deg) 
 
-export const yTranslateRev2 = keyframes`
-    0% {
-       transform: translateY(37.5vh);
     }
-    100% {
-        transform: translateY(50vh);
+    to {
+        
+        transform: translateX(0%) rotateY(360deg) 
     }
 `;
+export const slideOutToLeft = keyframes`
+    from {
+       
+        transform: translateX(0%) rotateY(0deg) 
 
-export const rotate0 = keyframes`
-   0% {
-       transform: rotateZ(0deg);
-   }
-   100% {
-       transform: rotateZ(180deg);
-   }
-`;
-export const rotate45 = keyframes`
-   0% {
-       transform: rotateZ(45deg);
-   }
-   100% {
-       transform: rotateZ(225deg);
-   }
-`;
-export const rotate90 = keyframes`
-   0% {
-       transform: rotateZ(90deg);
-   }
-   100% {
-       transform: rotateZ(270deg);
-   }
-`;
-export const rotate135 = keyframes`
-   0% {
-       transform: rotateZ(135deg);
-   }
-   100% {
-       transform: rotateZ(315deg);
-   }
+    }
+    to {
+        
+        transform: translateX(-25%) rotateY(270deg) 
+    }
 `;

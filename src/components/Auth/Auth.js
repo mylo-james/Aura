@@ -1,44 +1,64 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { UserContext } from "../../context";
+import { fadeInFromUp } from "../../Styles/animations";
+import circle from "../../Images/circle.svg";
 import Name from "./Name";
 import Email from "./Email";
 import Password from "./Password";
 
 const rotate = keyframes`
     0% {
-        transform: rotate(0deg)
+        transform: rotate(0deg) skewY(0deg) skewX(0deg);
     }
 
+    10% {
+      transform: rotate(36deg) skewY(5deg) skewX(0deg);
+    }
+
+    20% {
+      transform: rotate(72deg) skewY(0deg) skewX(5deg);
+    }
+    30% {
+      transform: rotate(108deg) skewY(-5deg) skewX(0deg);
+    }
+    40% {
+      transform: rotate(144deg) skewY(0deg) skewX(-5deg);
+    }
+
+    50% {
+      transform: rotate(180deg) skewY(5deg) skewX(0deg);
+    }
+    60% {
+      transform: rotate(216deg) skewY(0deg) skewX(5deg);
+    }
+    70% {
+      transform: rotate(256deg) skewY(-5deg) skewX(0deg);
+    }
+    80% {
+      transform: rotate(288deg) skewY(0deg) skewX(-5deg);
+    }
+    90% {
+      transform: rotate(324deg) skewY(5deg) skewX(0deg);
+    }
     100% {
 
-        transform: rotate(360deg)
+        transform: rotate(360deg) skewY(0deg) skewX(0deg);;
 
     }
 `;
 
 const AuthWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  max-width: 614px;
-  height: 90vh;
-  margin: 5vh auto;
+  max-width: 500px;
+  height: 80vh;
+  margin: 5vh auto 10vh auto;
 
   & * {
-    width: 80%;
+    animation: ${fadeInFromUp} 0.5s forwards;
   }
 
-  svg {
-    width: 50%;
-    font: 40px Delius;
-    fill: #262626;
-    text-align: center;
-    margin-bottom: 60px;
-  }
-  .logoWrapper, div {
+  div {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -46,23 +66,11 @@ const AuthWrapper = styled.div`
   }
 
   img {
-    width: 40%;
-    max-width: 400px;
-    animation: ${rotate} 20s linear infinite;
-  }
-
-  h2,
-  p {
-    
-    padding-bottom: 10px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  h3 {
-    margin-top: 20px;
+    width: 50%;
+    max-width: 350px;
+    max-height: 25vh;
+    margin-bottom: 10px;
+    animation: ${rotate} 15s linear infinite;
   }
 
   input {
@@ -71,14 +79,14 @@ const AuthWrapper = styled.div`
     border: none;
     border-bottom: #dfdfdf solid 1px;
     margin-top: 30px;
-    height: 50px;
-    font-size: 20;
+    height: 30px;
+    font-size: 0.7rem;
   }
 `;
 
 const Auth = () => {
   const [next, setNext] = useState();
-  const [input, setInput] = useState("test");
+
   const {
     currentUserName,
     setCurrentUserName,
@@ -103,11 +111,6 @@ const Auth = () => {
   }, [setCurrentUserName, setCurrentUserEmail]);
 
   useEffect(() => {
-    renderNext();
-  }, [currentUserName, currentUserEmail]);
-
-  const renderNext = () => {
-    console.log(currentUserName, currentUserEmail);
     if (!currentUserName) {
       setNext(<Name />);
       return;
@@ -117,8 +120,14 @@ const Auth = () => {
       return;
     }
     setNext(<Password />);
-  };
-  return <AuthWrapper>{next}</AuthWrapper>;
+  }, [currentUserName, currentUserEmail]);
+
+  return (
+    <AuthWrapper>
+      <img alt="Aura Logo" src={circle} />
+      {next}
+    </AuthWrapper>
+  );
 };
 
 export default Auth;

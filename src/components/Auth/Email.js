@@ -1,21 +1,59 @@
-import React, { useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import sun from "../../Images/sun.svg";
+import React, { useContext, useRef, useState, useEffect } from "react";
+import styled from "styled-components";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context";
+import { slideInFromRight } from "../../Styles/animations";
+
+const EmailWrapper = styled.div`
+  height: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  button {
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  a {
+    font-size: 0.8rem;
+    color: #7e57c2;
+  }
+  .switch {
+    width: 100%;
+    font-size: 0.6rem;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    width: 70%;
+    animation-name: ${slideInFromRight};
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .question *,
+  .question *::placeholder {
+    color: white;
+  }
+`;
 
 const Email = () => {
+  const history = useHistory();
   const input = useRef();
   const [email, setEmail] = useState(null);
-  const { setCurrentUserEmail } = useContext(UserContext);
+  const {
+    setCurrentUserName,
+    currentUserName,
+    setCurrentUserEmail,
+  } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
-    const token = JSON.parse(localStorage.getItem("aura_register"));
-    localStorage.setItem(
-      "aura_register",
-      JSON.stringify({ ...token, email: input.current.value })
-    );
-    setCurrentUserEmail(email);
-  };
+  useEffect(() => {
+    input.current.focus();
+  }, []);
+
   const handleUpdate = (e) => {
     if (e.keyCode === 13) {
       handleSubmit();
@@ -23,34 +61,50 @@ const Email = () => {
     }
     setEmail(input.current.value);
   };
+
+  const handleSubmit = (e) => {
+    if (!email) {
+      toast("Please provide an email");
+      return;
+    }
+    const token = JSON.parse(localStorage.getItem("aura_register"));
+    localStorage.setItem(
+      "aura_register",
+      JSON.stringify({ ...token, email: input.current.value })
+    );
+    setCurrentUserEmail(email);
+    setCurrentUserName(JSON.parse(localStorage.getItem("aura_register")).name);
+  };
+
+  const handleBack = (e) => {
+    setCurrentUserName("");
+    localStorage.setItem(
+      "aura_register",
+      JSON.stringify({ name: "", email: "" })
+    );
+    setEmail("");
+    history.goBack();
+  };
   return (
-    <>
-      <div className="logoWrapper">
-        <img alt="sun" src={sun} />
-        <svg viewBox="0 0 240 80">
-          å
-          <text x="77" y="50">
-            Aura
-          </text>
-        </svg>
-        <h2>Welcome to Aura,</h2>
-        <h2>Your Daily Mood Journal.</h2>
-      </div>
-      <div>
-        <h3>What's your email?</h3>
+    <EmailWrapper>
+      <div>{`Nice to meet you, ${currentUserName}`}</div>
+
+      <div className="question card">
+        <div>What's your email?</div>
         <input
           ref={input}
-          type="text"
+          type="email"
           name="email"
           id="email"
           placeholder="My email is..."
           onKeyUp={handleUpdate}
         ></input>
       </div>
-      <p>I already have an account</p>
-      <Link to={"/auth/register"}>Login</Link>
-      <button onClick={handleSubmit}>Continue</button>
-    </>
+      <div className="buttons">
+        <button onClick={handleSubmit}>Continue</button>
+        <button onClick={handleBack}>Go Back</button>
+      </div>
+    </EmailWrapper>
   );
 };
 
