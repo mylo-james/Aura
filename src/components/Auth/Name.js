@@ -27,12 +27,6 @@ const Name = () => {
     <>
       <div className="logoWrapper">
         <img alt="sun" src={sun} />
-        <svg viewBox="0 0 240 80">
-          å
-          <text x="77" y="50">
-            Aura
-          </text>
-        </svg>
         <h2>Welcome to Aura,</h2>
         <h2>Your Daily Mood Journal.</h2>
       </div>
@@ -47,9 +41,11 @@ const Name = () => {
           onKeyUp={handleUpdate}
         ></input>
       </div>
-      <p>I already have an account</p>
-      <Link to={"/auth/register"}>Login</Link>
       <button onClick={handleSubmit}>Continue</button>
+      <div>
+        <p>I already have an account</p>
+        <Link to={"/auth/register"}>Login</Link>
+      </div>
     </>
   );
 };

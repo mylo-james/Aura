@@ -5,6 +5,16 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  button {
+      height: 40px;
+      outline: none;
+      border: none;
+      background-color: #Fce181;
+      font-weight: 700;
+      color: #262626;
+      border-radius: 5px;
+  }
+
   html, body, div, span, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   abbr, address, cite, code,
@@ -21,10 +31,11 @@ const GlobalStyle = createGlobalStyle`
       padding:0;
       border:0;
       outline:0;
-      color: #262626;
-      font-size: 20px;
+      color: #202020;
+      font-size: 16px;
+      text-align: center;
       vertical-align:baseline;
-      background:transparent;
+      background: transparent;
       font-family: "Neue Plak", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: inherit;
@@ -44,9 +55,7 @@ const GlobalStyle = createGlobalStyle`
         list-style:none;
     }
 
-    body {
-      background-color: #fafafa;
-    }
+    
 
 
 

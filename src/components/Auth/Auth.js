@@ -38,7 +38,7 @@ const AuthWrapper = styled.div`
     text-align: center;
     margin-bottom: 60px;
   }
-  .logoWrapper {
+  .logoWrapper, div {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -53,12 +53,16 @@ const AuthWrapper = styled.div`
 
   h2,
   p {
-    text-align: center;
+    
     padding-bottom: 10px;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 20px;
+  }
+
+  h3 {
+    margin-top: 20px;
   }
 
   input {
