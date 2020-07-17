@@ -9,12 +9,13 @@ import Form from "./Form";
 const LoginWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 65%;
+  height: 55vh;
   margin: auto;
 
   .switch {
+    position: absolute;
     width: 70%;
-    margin-bottom: 20px;
+    bottom: 0px;
   }
 
   .user,

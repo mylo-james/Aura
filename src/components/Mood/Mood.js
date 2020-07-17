@@ -17,7 +17,7 @@ const MoodWrapper = styled.div`
 
   .svgWrapper,
   & svg {
-    margin: 0;
+    margin: 40px 0;
     height: 200px;
     width: 200px;
   }

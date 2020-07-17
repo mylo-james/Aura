@@ -10,12 +10,13 @@ import { Switch, Route, useLocation } from "react-router-dom";
 const RegisterWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 65%;
+  height: 55vh;
   margin: auto;
 
   .switch {
+    position: absolute;
     width: 70%;
-    margin-bottom: 20px;
+    bottom: 0px;
   }
 
   .user,
@@ -27,6 +28,10 @@ const RegisterWrapper = styled.div`
     font-family: raleway;
     font-weight: 900;
     color: white;
+  }
+
+  .button {
+    margin-bottom: 30px;
   }
 `;
 

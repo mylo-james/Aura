@@ -155,7 +155,7 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
   background: rgba(0,0,0,.2);
   border-radius: 1.3px;
-  border: 0.2px solid #010101;
+  border: 0.2px solid grey;
 }
 
 

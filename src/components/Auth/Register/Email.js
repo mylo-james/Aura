@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 
 const EmailWrapper = styled.div`
   position: absolute;
-  height: 50%;
+  height: 70%;
   width: 70%;
   left: 15%;
-  top: 30px;
+  top: 0px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: space-between;
 
   & * {
     font-size: 0.8rem;
