@@ -9,7 +9,7 @@ import Form from "./Form";
 const LoginWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 55vh;
+  height: 90vh;
   margin: auto;
 
   .switch {

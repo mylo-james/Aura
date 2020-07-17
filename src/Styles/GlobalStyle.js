@@ -127,7 +127,7 @@ const GlobalStyle = createGlobalStyle`
 
     input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 100%; /* Specific width is required for Firefox. */
+  width: 80%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
 }
 
@@ -140,7 +140,7 @@ input[type=range]:focus {
 }
 
 input[type=range]::-ms-track {
-  width: 100%;
+  width: 80%;
   cursor: pointer;
 
   /* Hides the slider so custom styles can be added */

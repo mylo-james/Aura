@@ -10,7 +10,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 const RegisterWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 55vh;
+  height: 90vh;
   margin: auto;
 
   .switch {

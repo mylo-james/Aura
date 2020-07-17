@@ -7,3 +7,4 @@ export const UserContext = createContext({
 
 export const ThemeContext = createContext({});
 export const CircleContext = createContext({});
+export const MoodContext = createContext({})

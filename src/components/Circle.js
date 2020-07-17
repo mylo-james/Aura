@@ -44,9 +44,10 @@ const rotate = keyframes`
     }
 `;
 const CircleWrapper = styled.div`
+  position: fixed;
   height: 30%;
   width: 100%;
-
+  top: -50px;
   margin: 100px auto;
   margin-bottom: 50px;
 
