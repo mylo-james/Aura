@@ -35,7 +35,7 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
             body: JSON.stringify(body),
           });
           if (!res.ok) {
-            history.push("/auth");
+            history.push("/auth/register");
             return;
           }
 
@@ -44,7 +44,7 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
           setCurrentUserName(user.name);
           setCurrentUserEmail(user.email);
         } catch (e) {
-          history.push("/auth");
+          history.push("/auth/register");
         }
       }
     })();

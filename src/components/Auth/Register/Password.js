@@ -2,42 +2,26 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { UserContext } from "../../context";
-import { backendURL } from "../../config";
+import { UserContext, CircleContext } from "../../../context";
+import { backendURL } from "../../../config";
 import { toast } from "react-toastify";
 
 const PasswordWrapper = styled.div`
-  height: 70%;
+  position: absolute;
+  height: 50%;
+  width: 70%;
+  left: 15%;
+  top: 30px;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  justify-content: center;
 
-  button {
-    width: 70%;
-    margin-bottom: 20px;
-  }
-  a {
+  & * {
     font-size: 0.8rem;
-    color: #7e57c2;
   }
-  .switch {
-    width: 100%;
-    font-size: 0.6rem;
-    margin-bottom: 20px;
-  }
-
-  .question {
-    width: 70%;
-    padding: 10% 30px;
-    border-radius: 5px;
-    background-color: #7e57c2;
-  }
-  .buttons {
-    width: 100%;
-  }
-  .question *,
-  .question *::placeholder {
-    color: white;
+  input {
+    margin: 0;
+    margin-bottom: 15px;
   }
 `;
 
@@ -52,13 +36,16 @@ const Password = () => {
     setCurrentUserEmail,
     setCurrentUserName,
   } = useContext(UserContext);
+  const { setCircleText } = useContext(CircleContext);
   const history = useHistory();
 
   useEffect(() => {
     input.current.focus();
-  }, []);
+    setCircleText([`Got it! Your email is:`, currentUserEmail]);
+  }, [currentUserEmail, setCircleText]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const body = {
       name: currentUserName,
       email: currentUserEmail,
@@ -66,7 +53,7 @@ const Password = () => {
       confirmPassword,
     };
 
-    const res = await fetch(`${backendURL}/session`, {
+    const res = await fetch(`${backendURL}/session/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -74,7 +61,7 @@ const Password = () => {
 
     if (!res.ok) {
       const { error } = await res.json();
-      toast.error(error);
+      toast(error, { toastId: "passwordError" });
       return;
     }
     const { access_token, user } = await res.json();
@@ -82,13 +69,13 @@ const Password = () => {
     setCurrentUserEmail(user.email);
     setCurrentUserName(user.name);
     localStorage.removeItem("aura_register");
-    localStorage.setItem("aura_access_token", access_token);
-    history.push("/");
+    localStorage.setItem("aura_access_token", JSON.stringify(access_token));
+    history.push("/mood");
   };
 
   const handleUpdate = (e) => {
     if (e.keyCode === 13) {
-      handleSubmit();
+      handleSubmit(e);
       return;
     }
     if (e.target.id === "password") {
@@ -97,24 +84,17 @@ const Password = () => {
       setConfirmPassword(e.target.value);
     }
   };
+
   const handleBack = (e) => {
-    setCurrentUserEmail("");
-    localStorage.setItem(
-      "aura_register",
-      JSON.stringify({ name: currentUserName, email: "" })
-    );
-    history.goBack();
+    e.preventDefault();
+    setCurrentUserEmail(null);
+    history.push("/auth/register");
   };
 
   return (
     <PasswordWrapper>
-      <div>
-        <div>{`Got it!`}</div>
-        <div>{currentUserEmail}</div>
-      </div>
-
-      <div className="question">
-        <div>Please set a password</div>
+      <label htmlFor="password">Please set a password</label>
+      <div style={{ width: "100%" }}>
         <input
           ref={input}
           type="password"
@@ -131,10 +111,9 @@ const Password = () => {
           onKeyUp={handleUpdate}
         ></input>
       </div>
-      <div className="buttons">
-        <button onClick={handleSubmit}>Continue</button>
-        <button onClick={handleBack}>Go Back</button>
-      </div>
+
+      <button onClick={handleSubmit}>Continue</button>
+      <button onClick={handleBack}>Go Back</button>
     </PasswordWrapper>
   );
 };

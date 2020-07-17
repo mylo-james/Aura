@@ -5,6 +5,5 @@ export const UserContext = createContext({
   updateCurrentUser: () => {},
 });
 
-export const ProfileContext = createContext();
-
-export const PostContext = createContext();
+export const ThemeContext = createContext({});
+export const CircleContext = createContext({});
