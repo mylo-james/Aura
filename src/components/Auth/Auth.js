@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { UserContext } from "../../context";
-import { fadeInFromUp } from "../../Styles/animations";
 import Circle from "../Circle";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
 import { Route, Switch } from "react-router-dom";
 
 const AuthWrapper = styled.div`
+  position: relative;
   width: 100%;
+  height: calc(65vh - 25px);
   max-width: 500px;
-  height: 85vh;
-  margin: 3vh auto 10vh auto;
+  margin: 0 auto 5vh auto;
 
   button {
     width: 80%;
@@ -20,18 +20,13 @@ const AuthWrapper = styled.div`
   button {
     font-size: 0.7rem;
   }
-  div {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-evenly;
-  }
 `;
 
 const Auth = (props) => {
   const { setCurrentUserName, setCurrentUserEmail } = useContext(UserContext);
 
   useEffect(() => {
+    console.log("auth");
     const token = JSON.parse(localStorage.getItem("aura_register"));
     if (token) {
       setCurrentUserName(token.name);
@@ -41,9 +36,9 @@ const Auth = (props) => {
         "aura_register",
         JSON.stringify({ name: null, email: null })
       );
+      props.history.push("/auth/register");
     }
-    props.history.push("/auth/register");
-  }, [setCurrentUserName, setCurrentUserEmail]);
+  }, [props.history, setCurrentUserName, setCurrentUserEmail]);
 
   return (
     <AuthWrapper>

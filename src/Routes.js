@@ -16,7 +16,7 @@ export const ProtectedRoute = ({ component: Component, path, exact }) => {
 
   useEffect(() => {
     if (!currentUserId && !localStorage.getItem("aura_access_token")) {
-      history.push("/auth");
+      history.push("/auth/register");
     }
 
     (async () => {

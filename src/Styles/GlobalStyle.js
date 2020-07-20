@@ -21,7 +21,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
 #root{
-    margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
 }
 
 #root * {
@@ -121,14 +126,15 @@ const GlobalStyle = createGlobalStyle`
     .Toastify__close-button {
         display: none;
     }
+
     body {
         background-color: ${(props) => props.theme.primary};
     }
 
     input[type=range] {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 80%; /* Specific width is required for Firefox. */
-  background: transparent; /* Otherwise white in Chrome */
+  -webkit-appearance: none; 
+  width: 80%; 
+  background: transparent; 
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -136,14 +142,12 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]:focus {
-  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  outline: none; 
 }
 
 input[type=range]::-ms-track {
   width: 80%;
   cursor: pointer;
-
-  /* Hides the slider so custom styles can be added */
   background: transparent; 
   border-color: transparent;
   color: transparent;
@@ -167,10 +171,16 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50%;
   background: white;
   cursor: pointer;
-  margin-top: -7px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  margin-top: -7px;
+
+.Toastify__toast-body{
+  color: ${(props) => props.theme.primary};
 }
 
-
+.Toastify__progress-bar--default{
+  background: linear-gradient(to left, white, ${(props) =>
+    props.theme.primary} 33%)
+}
 
 
   

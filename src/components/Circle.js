@@ -45,19 +45,18 @@ const rotate = keyframes`
 `;
 const CircleWrapper = styled.div`
   position: fixed;
-  height: 30%;
+  height: 30vh;
   width: 100%;
-  top: -50px;
-  margin: 100px auto;
-  margin-bottom: 50px;
+  top: 0;
+  margin: 25px auto;
 
   & * {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   img {
-    width: 150px;
+    width: 30%;
     border-radius: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     background: rgba(255, 225, 255, 0.8);
     box-shadow: rgba(255, 225, 255, 1) 0px 0px 90px 70px;
     animation: ${rotate} 15s linear infinite;

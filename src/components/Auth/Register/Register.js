@@ -5,13 +5,13 @@ import { UserContext } from "../../../context";
 import Name from "./Name";
 import Email from "./Email";
 import Password from "./Password";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 const RegisterWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 90vh;
+  width: 70%;
+  height: calc(70vh - 125px);
   margin: auto;
+  margin-top: calc(30vh + 25px);
 
   .switch {
     position: absolute;
@@ -32,6 +32,11 @@ const RegisterWrapper = styled.div`
 
   .button {
     margin-bottom: 30px;
+  }
+
+  form {
+    width: 100%;
+    height: 100%;
   }
 `;
 

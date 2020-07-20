@@ -12,8 +12,7 @@ import {
   MoodContext,
 } from "./context";
 import Auth from "./components/Auth/Auth";
-import Home from "./components/Home/Home";
-import Mood from "./components/Mood/Mood";
+import Dashboard from "./components/Dashboard/Dashboard";
 import GlobalStyle from "./Styles/GlobalStyle";
 
 function App() {
@@ -70,8 +69,7 @@ function App() {
               <BrowserRouter>
                 <Switch>
                   <AuthRoute path="/auth" component={Auth} />
-                  <ProtectedRoute path="/mood" component={Mood} />
-                  <ProtectedRoute path="/" component={Home} />
+                  <ProtectedRoute path="/" component={Dashboard} />
                 </Switch>
               </BrowserRouter>
             </ThemeProvider>

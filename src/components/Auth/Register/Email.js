@@ -4,17 +4,24 @@ import { UserContext, CircleContext } from "../../../context";
 import { useHistory } from "react-router-dom";
 
 const EmailWrapper = styled.div`
-  position: absolute;
-  height: 40%;
-  width: 70%;
-  left: 15%;
-  bottom: 125px;
+ width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
 
   & * {
     font-size: 0.8rem;
+  }
+
+  & div {
+    width: 100%;
+  }
+
+  button {
+    margin-bottom: 30px;
+  }
   }
 `;
 
@@ -41,19 +48,22 @@ const Email = (props) => {
 
   return (
     <EmailWrapper>
-      <label htmlFor="email">What's your email address?</label>
-      <input
-        ref={input}
-        autoFocus
-        type="text"
-        name="email"
-        id="email"
-        placeholder="My email address is..."
-        onKeyUp={props.handleUpdate(input)}
-      ></input>
-
-      <button onClick={props.handleSubmit(input)}>Continue</button>
-      <button onClick={handleBack}>Go Back</button>
+      <div>
+        <label htmlFor="email">What's your email address?</label>
+        <input
+          ref={input}
+          autoFocus
+          type="text"
+          name="email"
+          id="email"
+          placeholder="My email address is..."
+          onKeyUp={props.handleUpdate(input)}
+        ></input>
+      </div>
+      <div>
+        <button onClick={props.handleSubmit(input)}>Continue</button>
+        <button onClick={handleBack}>Go Back</button>
+      </div>
     </EmailWrapper>
   );
 };

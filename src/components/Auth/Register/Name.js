@@ -4,17 +4,23 @@ import styled from "styled-components";
 import { CircleContext } from "../../../context";
 
 const NameWrapper = styled.div`
-  position: absolute;
-  height: 40%;
-  width: 70%;
-  left: 15%;
-  bottom: 125px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
 
   & * {
     font-size: 0.8rem;
+  }
+
+  & div {
+    width: 100%;
+  }
+
+  button {
+    margin-bottom: 30px;
   }
 `;
 
@@ -33,21 +39,24 @@ const Name = (props) => {
 
   return (
     <NameWrapper>
-      <label htmlFor="name">What do your friends call you?</label>
+      <div>
+        <label htmlFor="name">What do your friends call you?</label>
 
-      <input
-        ref={input}
-        autoFocus
-        type="text"
-        name="name"
-        id="name"
-        placeholder="My friends call me..."
-        onKeyUp={props.handleUpdate(input)}
-        // onFocus={moveCursor}
-      ></input>
-
-      <button onClick={props.handleSubmit(input)}>Continue</button>
-      <button>Try our Demo</button>
+        <input
+          ref={input}
+          autoFocus
+          type="text"
+          name="name"
+          id="name"
+          placeholder="My friends call me..."
+          onKeyUp={props.handleUpdate(input)}
+          // onFocus={moveCursor}
+        ></input>
+      </div>
+      <div>
+        <button onClick={props.handleSubmit(input)}>Continue</button>
+        <button>Try our Demo</button>
+      </div>
     </NameWrapper>
   );
 };

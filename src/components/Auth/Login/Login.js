@@ -7,10 +7,10 @@ import { toast } from "react-toastify";
 import Form from "./Form";
 
 const LoginWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 90vh;
+  width: 70%;
+  height: calc(70vh - 125px);
   margin: auto;
+  margin-top: calc(30vh + 25px);
 
   .switch {
     position: absolute;
@@ -27,6 +27,15 @@ const LoginWrapper = styled.div`
     font-family: raleway;
     font-weight: 900;
     color: white;
+  }
+
+  .button {
+    margin-bottom: 30px;
+  }
+
+  form {
+    width: 100%;
+    height: 100%;
   }
 `;
 

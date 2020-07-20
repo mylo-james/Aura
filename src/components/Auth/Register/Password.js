@@ -7,21 +7,23 @@ import { backendURL } from "../../../config";
 import { toast } from "react-toastify";
 
 const PasswordWrapper = styled.div`
-  position: absolute;
-  height: 40%;
-  width: 70%;
-  left: 15%;
-  bottom: 125px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
 
   & * {
     font-size: 0.8rem;
   }
-  input {
-    margin: 0;
-    margin-bottom: 15px;
+
+  & div {
+    width: 100%;
+  }
+
+  button {
+    margin-bottom: 30px;
   }
 `;
 
@@ -93,27 +95,30 @@ const Password = () => {
 
   return (
     <PasswordWrapper>
-      <label htmlFor="password">Please set a password</label>
-      <div style={{ width: "100%" }}>
-        <input
-          ref={input}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          onKeyUp={handleUpdate}
-        ></input>
-        <input
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          placeholder="ConfirmPassword"
-          onKeyUp={handleUpdate}
-        ></input>
+      <div>
+        <label htmlFor="password">Please set a password</label>
+        <div style={{ width: "100%" }}>
+          <input
+            ref={input}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            onKeyUp={handleUpdate}
+          ></input>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="ConfirmPassword"
+            onKeyUp={handleUpdate}
+          ></input>
+        </div>
       </div>
-
-      <button onClick={handleSubmit}>Continue</button>
-      <button onClick={handleBack}>Go Back</button>
+      <div>
+        <button onClick={handleSubmit}>Continue</button>
+        <button onClick={handleBack}>Go Back</button>
+      </div>
     </PasswordWrapper>
   );
 };
